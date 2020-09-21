@@ -60,8 +60,7 @@ router.put('/updateUserById/:id', async (req, res) => {
     await User.findByIdAndUpdate(req.params.id, {name, email, birthDate}, async function (err, docs) {
         if(!docs){ 
             setResponseError(res, "User not found", 404);
-        }
-        else{
+        }else{
             await Address.findByIdAndUpdate(docs.address, {
                 street: address.street,
                 state: address.state,
@@ -85,8 +84,7 @@ router.delete('/deleteUserById/:id', async (req, res) => {
     await User.findByIdAndDelete(req.params.id, async function (err, docs) { 
         if(!docs){ 
             setResponseError(res, "User not found", 404);
-        }
-        else{
+        }else{
             await Address.findByIdAndDelete(docs.address);
         }
         res.end();
